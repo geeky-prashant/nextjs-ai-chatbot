@@ -20,6 +20,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "./ui/textarea"
+import LoadingButton from "./loading-button"
+import toast from "react-hot-toast"
 
 interface AddNoteDialogProps {
   open: boolean,
@@ -29,10 +31,19 @@ interface AddNoteDialogProps {
 export default function AddNoteDialog({ open, setOpen }: AddNoteDialogProps) {
   const form = useForm<CreateNoteSchema>({
     resolver: zodResolver(createNoteSchema),
+    defaultValues: {
+      title: "",
+      content: ""
+    }
   })
 
   async function onSubmit(input: CreateNoteSchema) {
-    alert(input)
+    try {
+
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong, Please try again");
+    }
   }
 
   return (
@@ -70,7 +81,9 @@ export default function AddNoteDialog({ open, setOpen }: AddNoteDialogProps) {
               )}
             />
             <DialogFooter>
-
+              <LoadingButton className="w-full mt-5 bg-gradient-to-r from-[#0F9E7B] to-[#1a6c57]" type="submit" loading={form.formState.isSubmitting}>
+                Submit
+              </LoadingButton>
             </DialogFooter>
           </form>
         </Form>
