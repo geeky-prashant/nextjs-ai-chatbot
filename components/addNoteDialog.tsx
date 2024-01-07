@@ -1,6 +1,7 @@
 "use client"
 
 import { useForm } from "react-hook-form"
+import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { createNoteSchema, CreateNoteSchema } from "@/lib/validation/note"
 import {
@@ -22,7 +23,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "./ui/textarea"
 import LoadingButton from "./loading-button"
 import toast from "react-hot-toast"
-import { useRouter } from "next/navigation"
 
 interface AddNoteDialogProps {
   open: boolean,
@@ -47,11 +47,12 @@ export default function AddNoteDialog({ open, setOpen }: AddNoteDialogProps) {
         body: JSON.stringify(input)
       });
 
-      if (!response.ok) throw Error("Status code: " + response.status)
-      toast.error("Note created successfully");
-      form.reset();
-      router.refresh();
-      setOpen(false);
+      if (response.ok) {
+        toast.success("Note created successfully");
+        form.reset();
+        setOpen(false);
+        router.refresh();
+      }
 
     } catch (error) {
       console.log(error);
