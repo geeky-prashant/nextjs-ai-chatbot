@@ -21,7 +21,7 @@ export async function POST(req: Request) {
       return Response.json({ error: "Unauthorised" }, { status: 401 });
     }
 
-    const note = prisma.note.create({
+    const note = await prisma.note.create({
       data: {
         title,
         content,
