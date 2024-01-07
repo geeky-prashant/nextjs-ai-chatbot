@@ -17,7 +17,7 @@ const Navbar = () => {
       <div className="p-4 shadow">
         <div className="m-auto max-w-7xl flex items-center justify-between flex-wrap gap-3">
           <Link href="/notes" className="flex items-center gap-1.5">
-            <Image src={Logo} alt="Logo" width={42} height={42} />
+            <Image src={Logo} priority alt="Logo" width={42} height={42} />
             <span className="tracking-tight font-extrabold text-lg text-[#1C274C]">365Bot</span>
           </Link>
           <div className="flex items-center gap-8">

@@ -6,23 +6,19 @@ import { createNoteSchema, CreateNoteSchema } from "@/lib/validation/note"
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { Textarea } from "./ui/textarea"
 
 interface AddNoteDialogProps {
@@ -76,7 +72,6 @@ export default function AddNoteDialog({ open, setOpen }: AddNoteDialogProps) {
             <DialogFooter>
 
             </DialogFooter>
-            <Button type="submit">Submit</Button>
           </form>
         </Form>
       </DialogContent>
