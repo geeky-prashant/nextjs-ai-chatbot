@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "./ui/textarea"
 import LoadingButton from "./loading-button"
 import toast from "react-hot-toast"
+import { useRouter } from "next/navigation"
 
 interface AddNoteDialogProps {
   open: boolean,
@@ -29,6 +30,8 @@ interface AddNoteDialogProps {
 }
 
 export default function AddNoteDialog({ open, setOpen }: AddNoteDialogProps) {
+  const router = useRouter();
+
   const form = useForm<CreateNoteSchema>({
     resolver: zodResolver(createNoteSchema),
     defaultValues: {
@@ -39,10 +42,20 @@ export default function AddNoteDialog({ open, setOpen }: AddNoteDialogProps) {
 
   async function onSubmit(input: CreateNoteSchema) {
     try {
+      const response = await fetch("/api/notes", {
+        method: "POST",
+        body: JSON.stringify(input)
+      });
+
+      if (!response.ok) throw Error("Status code: " + response.status)
+      toast.error("Note created successfully");
+      form.reset();
+      router.refresh();
+      setOpen(false);
 
     } catch (error) {
-      console.error(error);
-      toast.error("Something went wrong, Please try again");
+      console.log(error);
+      toast.error("Something went wrong");
     }
   }
 
