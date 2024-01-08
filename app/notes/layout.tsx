@@ -4,7 +4,7 @@ const NotesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Navbar />
-      <main className='h-screen m-auto max-w-7xl p-4'>
+      <main className='m-auto max-w-7xl p-4 mt-4 lg:mt-6'>
         {children}
       </main>
     </>

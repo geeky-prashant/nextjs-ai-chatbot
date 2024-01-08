@@ -7,10 +7,10 @@ import Logo from "@/assets/logo.svg"
 import { UserButton } from "@clerk/nextjs"
 import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
-import AddNoteDialog from "@/components/addNoteDialog"
+import AddEditNoteDialog from "@/components/add-edit-note-dialog"
 
 const Navbar = () => {
-  const [showAddNoteDialog, setShowAddNoteDialog] = useState(false);
+  const [showEditAddNoteDialog, setShowEditAddNoteDialog] = useState(false);
 
   return (
     <>
@@ -21,7 +21,7 @@ const Navbar = () => {
             <span className="tracking-tight font-extrabold text-lg text-[#1C274C]">365Bot</span>
           </Link>
           <div className="flex items-center gap-8">
-            <Button onClick={() => setShowAddNoteDialog(true)} className="bg-gradient-to-r from-[#0F9E7B] to-[#1a6c57]">
+            <Button onClick={() => setShowEditAddNoteDialog(true)} className="bg-gradient-to-r from-[#0F9E7B] to-[#1a6c57]">
               <Plus size={20} className="mr-1" />
               Add Note
             </Button>
@@ -39,7 +39,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <AddNoteDialog open={showAddNoteDialog} setOpen={setShowAddNoteDialog} />
+      <AddEditNoteDialog open={showEditAddNoteDialog} setOpen={setShowEditAddNoteDialog} />
     </>
   )
 }

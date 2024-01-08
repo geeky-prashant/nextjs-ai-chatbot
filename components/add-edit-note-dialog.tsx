@@ -24,12 +24,12 @@ import { Textarea } from "./ui/textarea"
 import LoadingButton from "./loading-button"
 import toast from "react-hot-toast"
 
-interface AddNoteDialogProps {
+interface AddEditNoteDialogProps {
   open: boolean,
   setOpen: (open: boolean) => void
 }
 
-export default function AddNoteDialog({ open, setOpen }: AddNoteDialogProps) {
+export default function AddEditNoteDialog({ open, setOpen }: AddEditNoteDialogProps) {
   const router = useRouter();
 
   const form = useForm<CreateNoteSchema>({
@@ -42,17 +42,15 @@ export default function AddNoteDialog({ open, setOpen }: AddNoteDialogProps) {
 
   async function onSubmit(input: CreateNoteSchema) {
     try {
-      const response = await fetch("/api/notes", {
+      await fetch("/api/notes", {
         method: "POST",
         body: JSON.stringify(input)
       });
 
-      if (response.ok) {
-        toast.success("Note created successfully");
-        form.reset();
-        setOpen(false);
-        router.refresh();
-      }
+      toast.success("Note created successfully");
+      form.reset();
+      setOpen(false);
+      router.refresh();
 
     } catch (error) {
       console.log(error);
