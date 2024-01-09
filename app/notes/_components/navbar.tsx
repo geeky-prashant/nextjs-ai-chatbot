@@ -20,10 +20,10 @@ const Navbar = () => {
             <Image src={Logo} priority alt="Logo" width={42} height={42} />
             <span className="tracking-tight font-extrabold text-lg text-[#1C274C]">365Bot</span>
           </Link>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 md:gap-6">
             <Button onClick={() => setShowEditAddNoteDialog(true)} className="bg-gradient-to-r from-[#0F9E7B] to-[#1a6c57]">
               <Plus size={20} className="mr-1" />
-              Add Note
+              Create
             </Button>
             <UserButton
               afterSignOutUrl="/"

@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from 'react';
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -24,7 +25,6 @@ import { Textarea } from "./ui/textarea"
 import LoadingButton from "./loading-button"
 import toast from "react-hot-toast"
 import { Note } from "@prisma/client"
-import { PUT } from "@/app/api/notes/route"
 
 interface AddEditNoteDialogProps {
   open: boolean,
@@ -33,6 +33,8 @@ interface AddEditNoteDialogProps {
 }
 
 export default function AddEditNoteDialog({ open, setOpen, noteToEdit }: AddEditNoteDialogProps) {
+  const [deleteInProgress, setDeleteInProgress] = useState(false);
+
   const router = useRouter();
 
   const form = useForm<CreateNoteSchema>({
@@ -75,13 +77,35 @@ export default function AddEditNoteDialog({ open, setOpen, noteToEdit }: AddEdit
     }
   }
 
+  async function deleteNote() {
+    if (!noteToEdit) return;
+    setDeleteInProgress(true);
+    try {
+      await fetch("/api/notes", {
+        method: "DELETE",
+        body: JSON.stringify({
+          id: noteToEdit.id
+        })
+      });
 
+      toast.success("Note deleted successfully");
+      setOpen(false);
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    } finally {
+      setDeleteInProgress(false)
+    }
+  }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent>
+      <DialogContent className="w-[90%] rounded-md md:m-auto md:w-full">
         <DialogHeader>
-          <DialogTitle>Add Note</DialogTitle>
+          <DialogTitle>
+            {noteToEdit ? "Edit Note" : "Create Note"}
+          </DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
@@ -111,9 +135,25 @@ export default function AddEditNoteDialog({ open, setOpen, noteToEdit }: AddEdit
                 </FormItem>
               )}
             />
-            <DialogFooter>
-              <LoadingButton className="w-full mt-5 bg-gradient-to-r from-[#0F9E7B] to-[#1a6c57]" type="submit" loading={form.formState.isSubmitting}>
-                Submit
+            <DialogFooter className="gap-0 md:gap-2">
+              {noteToEdit && (
+                <LoadingButton
+                  className="w-full mt-5 bg-gradient-to-r from-[#2d2c2c] to-[#000000]"
+                  loading={deleteInProgress}
+                  disabled={form.formState.isSubmitting}
+                  onClick={deleteNote}
+                  type="button"
+                >
+                  Delete
+                </LoadingButton>
+              )}
+              <LoadingButton
+                className="w-full mt-5 bg-gradient-to-r from-[#0F9E7B] to-[#1a6c57]"
+                loading={form.formState.isSubmitting}
+                disabled={deleteInProgress}
+                type="submit"
+              >
+                {noteToEdit ? "Update" : "Create"}
               </LoadingButton>
             </DialogFooter>
           </form>

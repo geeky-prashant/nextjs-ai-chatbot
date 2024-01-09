@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs";
 import { Metadata } from "next";
 import prisma from '@/lib/db/prisma';
-import Note from "@/components/note";
+import NoteCard from "@/components/note-card";
 import Image from 'next/image';
 import Empty from "@/assets/empty.svg"
 
@@ -24,7 +24,7 @@ export default async function NotesPage() {
     <>
       <div className="mt-0 md:mt-10 grid gap-5 grid-cols-2 lg:grid-cols-4">
         {allNotes.map((note) => (
-          <Note note={note} key={note.id} />
+          <NoteCard note={note} key={note.id} />
         ))}
       </div>
       <div>
