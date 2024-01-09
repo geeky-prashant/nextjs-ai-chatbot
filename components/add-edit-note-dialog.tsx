@@ -24,6 +24,7 @@ import { Textarea } from "./ui/textarea"
 import LoadingButton from "./loading-button"
 import toast from "react-hot-toast"
 import { Note } from "@prisma/client"
+import { PUT } from "@/app/api/notes/route"
 
 interface AddEditNoteDialogProps {
   open: boolean,
@@ -44,13 +45,27 @@ export default function AddEditNoteDialog({ open, setOpen, noteToEdit }: AddEdit
 
   async function onSubmit(input: CreateNoteSchema) {
     try {
-      await fetch("/api/notes", {
-        method: "POST",
-        body: JSON.stringify(input)
-      });
+      if (noteToEdit) {
+        await fetch("/api/notes", {
+          method: "PUT",
+          body: JSON.stringify({
+            id: noteToEdit.id,
+            ...input
+          })
+        });
 
-      toast.success("Note created successfully");
-      form.reset();
+        toast.success("Note updated successfully");
+
+      } else {
+        await fetch("/api/notes", {
+          method: "POST",
+          body: JSON.stringify(input)
+        });
+
+        toast.success("Note created successfully");
+        form.reset();
+      }
+
       setOpen(false);
       router.refresh();
 
@@ -59,6 +74,8 @@ export default function AddEditNoteDialog({ open, setOpen, noteToEdit }: AddEdit
       toast.error("Something went wrong");
     }
   }
+
+
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
