@@ -22,7 +22,7 @@ export default async function NotesPage() {
 
   return (
     <>
-      <div className="grid gap-5 grid-cols-2 lg:grid-cols-4">
+      <div className="mt-0 md:mt-10 grid gap-5 grid-cols-2 lg:grid-cols-4">
         {allNotes.map((note) => (
           <Note note={note} key={note.id} />
         ))}
@@ -30,9 +30,9 @@ export default async function NotesPage() {
       <div>
         {
           allNotes.length === 0 && (
-            <div className="h-full flex items-center justify-center flex-col">
+            <div className="h-[70vh] flex items-center justify-center flex-col">
               <Image src={Empty} priority alt="Empty" width={70} height={70} />
-              <p className="mt-4 text-center max-w-md px-4 text-xl md:text-base">{"You don't have any notes yet. Why don't you create one?"}</p>
+              <p className="mt-4 text-center max-w-md px-4 text-md md:text-base">{"You don't have any notes yet. Why don't you create one?"}</p>
             </div>
           )
         }

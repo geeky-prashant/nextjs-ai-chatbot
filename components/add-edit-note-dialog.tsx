@@ -23,20 +23,22 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "./ui/textarea"
 import LoadingButton from "./loading-button"
 import toast from "react-hot-toast"
+import { Note } from "@prisma/client"
 
 interface AddEditNoteDialogProps {
   open: boolean,
-  setOpen: (open: boolean) => void
+  setOpen: (open: boolean) => void,
+  noteToEdit?: Note
 }
 
-export default function AddEditNoteDialog({ open, setOpen }: AddEditNoteDialogProps) {
+export default function AddEditNoteDialog({ open, setOpen, noteToEdit }: AddEditNoteDialogProps) {
   const router = useRouter();
 
   const form = useForm<CreateNoteSchema>({
     resolver: zodResolver(createNoteSchema),
     defaultValues: {
-      title: "",
-      content: ""
+      title: noteToEdit?.title || "",
+      content: noteToEdit?.content || "",
     }
   })
 
