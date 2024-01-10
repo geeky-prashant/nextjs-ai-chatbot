@@ -18,7 +18,22 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en" suppressHydrationWarning={true}>
+      <html lang="en">
+        <head>
+          <link rel="icon" href="/favicon.icon" sizes="any" />
+          <link
+            rel="icon"
+            href="/icon?<generated>"
+            type="image/<generated>"
+            sizes="<generated>"
+          />
+          <link
+            rel="apple-touch-icon"
+            href="/apple-icon?<generated>"
+            type="image/<generated>"
+            sizes="<generated>"
+          />
+        </head>
         <body className={inter.className}>
           <ToastProvider />
           {children}
