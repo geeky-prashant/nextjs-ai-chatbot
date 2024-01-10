@@ -23,13 +23,13 @@ export default function NoteCard({ note }: NoteProps) {
       <Card className="cursor-pointer transition-shadow hover:shadow-lg"
         onClick={() => setShowEditDialog(true)} >
         <CardHeader>
-          <CardTitle>{note.title}</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[16px] md:text-lg">{note.title}</CardTitle>
+          <CardDescription className="text-[12px] md:text-sm">
             {createdUpdatedAtTimestamp}
             {wasUpdated && " (updated)"}
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="text-[14px] md:text-lg">
           <p className="whitespace-pre-line">
             {note.content}
           </p>

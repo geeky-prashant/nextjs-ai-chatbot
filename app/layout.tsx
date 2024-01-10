@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import './globals.css'
 import { ToastProvider } from '@/components/providers/toast-provider'
+import { ThemeProvider } from './ThemeProvider';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <head>
           <link rel="icon" href="/favicon.icon" sizes="any" />
           <link
@@ -36,7 +37,12 @@ export default function RootLayout({
         </head>
         <body className={inter.className}>
           <ToastProvider />
-          {children}
+          <ThemeProvider
+            attribute="class"
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
