@@ -80,3 +80,8 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+/* Clerk Sign/SignUp Card  */
+.cl-internal-19xp6v9 {
+  max-width: calc(100vw - 3rem);
+}
