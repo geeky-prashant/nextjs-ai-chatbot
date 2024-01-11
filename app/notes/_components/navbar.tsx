@@ -25,8 +25,15 @@ const Navbar = () => {
             <Image src={Logo} priority alt="Logo" width={42} height={42} />
             <span className="tracking-tight font-extrabold text-lg">365Bot</span>
           </Link>
-          <div className="flex items-center gap-4 md:gap-6">
+          <div className="flex items-center gap-3 md:gap-6">
+            {/* Mobile Create Button  */}
+            <Button onClick={() => setShowEditAddNoteDialog(true)} className="flex md:hidden bg-gradient-to-r from-[#0F9E7B] to-[#1a745d] px-2.5 h-9">
+              <Plus size={18} />
+            </Button>
+
             <ThemeToggleButton />
+
+            {/* Desktop Create Button  */}
             <Button onClick={() => setShowEditAddNoteDialog(true)} className="hidden md:flex bg-gradient-to-r from-[#0F9E7B] to-[#1a745d]">
               <Plus size={20} className="mr-1" />
               Create
