@@ -21,7 +21,7 @@ const HomePage = () => {
         <Image src={Logo} alt="Logo" width={80} height={80} />
         <span className="font-extrabold tracking-tight text-3xl lg:text-5xl text-[#1C274C]">365Bot</span>
       </div>
-      <p className="text-center max-w-md px-4 text-md md:text-base">An intelligent note-taking app with AI integration, built with cutting-edge technologies</p>
+      <p className="text-center max-w-md px-4 text-md md:text-base text-[#161616]">An intelligent note-taking app with AI integration, built with cutting-edge technologies</p>
       <Button
         size="lg"
         className="bg-gradient-to-r from-[#0F9E7B] to-[#1a6c57] mt-4"

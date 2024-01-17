@@ -138,7 +138,7 @@ export default function AddEditNoteDialog({ open, setOpen, noteToEdit }: AddEdit
             <DialogFooter className="gap-0 md:gap-2">
               {noteToEdit && (
                 <LoadingButton
-                  className="w-full mt-5 bg-gradient-to-r from-[#7b1214] to-[#4d0707]"
+                  className="w-full mt-5 bg-gradient-to-r from-[#b21f22] to-[#862222] text-white"
                   loading={deleteInProgress}
                   disabled={form.formState.isSubmitting}
                   onClick={deleteNote}
@@ -148,7 +148,7 @@ export default function AddEditNoteDialog({ open, setOpen, noteToEdit }: AddEdit
                 </LoadingButton>
               )}
               <LoadingButton
-                className="w-full mt-5 bg-gradient-to-r from-[#0F9E7B] to-[#1a745d]"
+                className="w-full mt-5 bg-gradient-to-r from-[#0F9E7B] to-[#1a745d] text-white"
                 loading={form.formState.isSubmitting}
                 disabled={deleteInProgress}
                 type="submit"
