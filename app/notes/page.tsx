@@ -4,6 +4,7 @@ import prisma from '@/lib/db/prisma';
 import NoteCard from "@/components/note-card";
 import Image from 'next/image';
 import Empty from "@/assets/empty.svg"
+import AIChatButton from "@/components/ai-chatbutton";
 
 export const metadata: Metadata = {
   title: '365Bot - Notes',
@@ -22,7 +23,7 @@ export default async function NotesPage() {
 
   return (
     <>
-      <div className="mt-0 md:mt-10 grid gap-3 md:gap-5 grid-cols-2 lg:grid-cols-4">
+      <div className="mt-0 md:mt-5 lg:mt-10 grid gap-3 md:gap-5 grid-cols-2 lg:grid-cols-4">
         {allNotes.map((note) => (
           <NoteCard note={note} key={note.id} />
         ))}
@@ -37,6 +38,7 @@ export default async function NotesPage() {
           )
         }
       </div>
+      <AIChatButton />
     </>
   )
 }
