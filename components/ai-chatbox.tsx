@@ -14,7 +14,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
 
   return (
     <div
-      className={cn('bottom-0 right-0 md:right-2 md:bottom-2 z-10 h-full w-full max-w-[500px] p-1', open ? "fixed" : "hidden")}
+      className={cn('bottom-0 right-0 md:right-2 md:bottom-2 z-10 h-full md:h-auto w-full max-w-[500px] p-1', open ? "fixed" : "hidden")}
     >
       <div className='flex h-full md:h-[600px] flex-col rounded bg-background border shadow-xl'>
         <button onClick={onClose} className='mb-1 ms-auto block p-3'>
