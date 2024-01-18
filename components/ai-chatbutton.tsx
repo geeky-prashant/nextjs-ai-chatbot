@@ -10,9 +10,8 @@ const AIChatButton = () => {
 
   return (
     <>
-      <Button onClick={() => setChatBoxOpen(true)} className="absolute right-10 bottom-10">
-        <Bot size={20} className='mr-2' />
-        AI Chat
+      <Button onClick={() => setChatBoxOpen(true)} className="absolute right-4 bottom-6 md:right-10 md:bottom-10 cursor-pointer w-14 h-14 rounded-full bg-gradient-to-r from-[#0F9E7B] to-[#1a745d]">
+        <Bot size={25} className='animate-pulse' />
       </Button>
       <AIChatBox open={chatBoxOpen} onClose={() => setChatBoxOpen(false)} />
     </>

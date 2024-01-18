@@ -1,6 +1,8 @@
 import { cn } from '@/lib/utils';
 import { useChat } from 'ai/react';
-import { XCircle } from 'lucide-react';
+import { Send, XCircle } from 'lucide-react';
+import { Input } from './ui/input';
+import { Button } from './ui/button';
 
 interface AIChatBoxProps {
   open: boolean,
@@ -12,11 +14,26 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
 
   return (
     <div
-      className={cn('bottom-0 right-0 md:right-36 z-10 w-full max-w-[500px] p-1', open ? "fixed" : "hidden")}
+      className={cn('bottom-0 right-0 md:right-2 md:bottom-2 z-10 h-full w-full max-w-[500px] p-1', open ? "fixed" : "hidden")}
     >
-      <button onClick={onClose} className='mb-1 ms-auto block'>
-        <XCircle size={30} />
-      </button>
+      <div className='flex h-full md:h-[600px] flex-col rounded bg-background border shadow-xl'>
+        <button onClick={onClose} className='mb-1 ms-auto block p-3'>
+          <XCircle size={30} />
+        </button>
+        <div className='h-full p-3'>
+          Messages
+        </div>
+        <form onSubmit={handleSubmit} className='m-3 flex gap-2'>
+          <Input
+            value={input}
+            onChange={handleInputChange}
+            placeholder='Message'
+          />
+          <Button type='submit' className='bg-gradient-to-r from-[#0F9E7B] to-[#1a745d]'>
+            <Send size={20} />
+          </Button>
+        </form>
+      </div>
     </div>
   )
 }

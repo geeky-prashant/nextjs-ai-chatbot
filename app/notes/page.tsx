@@ -23,7 +23,7 @@ export default async function NotesPage() {
 
   return (
     <>
-      <div className="mt-0 md:mt-5 lg:mt-10 grid gap-3 md:gap-5 grid-cols-2 lg:grid-cols-4">
+      <div className="relative mt-0 md:mt-5 lg:mt-10 grid gap-3 md:gap-5 grid-cols-2 lg:grid-cols-4">
         {allNotes.map((note) => (
           <NoteCard note={note} key={note.id} />
         ))}
