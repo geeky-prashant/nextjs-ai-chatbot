@@ -21,7 +21,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
           <XCircle size={30} />
         </button>
         <div className='h-full p-3'>
-          Messages
+          Next.js is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations. Under the hood, Next.js also abstracts and automatically configures tooling needed for React, like bundling, compiling, and more.
         </div>
         <form onSubmit={handleSubmit} className='m-3 flex gap-2'>
           <Input
